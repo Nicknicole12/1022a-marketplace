@@ -1,3 +1,12 @@
+//Gabi: Eu criei uma nova rota chamada `get /usuarios` para a aplicação. Essa rota vai receber as 
+//informações do usuário, como nome e email. Também fiz uma verificação para garantir que todos os dados
+//necessários foram enviados. Se faltar alguma coisa, a rota vai retornar um erro.
+
+//Jose: Eu fiquei responsável pela parte que insere os dados no banco de dados. 
+//Usei uma consulta SQL para salvar o nome e o email de forma segura, evitando problemas de segurança. 
+
+
+
 import express from 'express';
 import mysql from 'mysql2/promise';
 import cors from 'cors';
@@ -19,12 +28,11 @@ app.get("/produtos", async (req, res) => {
         await connection.end();
         res.send(result);
     } catch (e) {
-        console.error(e); // Log do erro para depuração
+        console.error(e); 
         res.status(500).send("Server ERROR");
     }
 });
 
-// Rota para listar usuários
 app.get("/usuarios", async (req, res) => {
     try {
         const connection = await mysql.createConnection({
@@ -38,7 +46,7 @@ app.get("/usuarios", async (req, res) => {
         await connection.end();
         res.send(result);
     } catch (e) {
-        console.error(e); // Log do erro para depuração
+        console.error(e);
         res.status(500).send("Server ERROR");
     }
 });
