@@ -12,7 +12,7 @@ import mysql, { Connection } from 'mysql2/promise'
                     port: process.env.dbport ? parseInt(process.env.dbport) : 3306
                 })
             }
-            async consultar(){
+            async consultar(quey:string,params?:any[]){
                 if(!this.connection) 
                     throw new Error(" Erro de conexão com o banco de dados.")
                 const [result, fields] = await this.connection.query("SELECT * from produtos")
